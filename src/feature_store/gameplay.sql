@@ -1,6 +1,6 @@
 WITH tb_partidas as (
     Select * FROM silver.gamersclub.estatisticas_partidas_jogadores
-    WHERE date(dtPartida)>=dateadd(MONTH,-6, '{date}')
+    WHERE date(dtPartida)>=dateadd(MONTH,-3, '{date}')
     and date(dtPartida)<'{date}'
 ),
 
@@ -106,7 +106,7 @@ tb_final AS (
 
 )
 
-SELECT '{date}' AS dtRef
+SELECT date('{date}') AS dtRef
        ,*
 FROM tb_final
 
