@@ -8,7 +8,7 @@ first_subscription
 AS (SELECT 
   idJogador, 
   MIN(CASE WHEN idMedalha IN (1, 3) THEN dtCriacao END) AS first_date, 
-  DATEDIFF(current_date(), MIN(CASE WHEN idMedalha IN (1, 3) THEN dtCriacao END)) AS days_since_first_subscription
+  DATEDIFF('{date}', MIN(CASE WHEN idMedalha IN (1, 3) THEN dtCriacao END)) AS days_since_first_subscription
 FROM tb_medalhas
 WHERE idMedalha IN (1, 3)
 GROUP BY idJogador)
@@ -22,7 +22,7 @@ SELECT
        sum(CASE WHEN b.idMedalha NOT IN (1, 3) THEN 1 ELSE 0 END)/12 AS qtdMedalhasMes,
        sum(CASE WHEN (b.idMedalha IN (1, 3) AND a.flAtiva=0) THEN 1 ELSE 0 END) AS qtdChurn,
        sum(CASE WHEN (b.idMedalha IN (1, 3) AND a.flAtiva=0) THEN 1 ELSE 0 END)/12 AS qtdChurnMes,
-       DATEDIFF(current_date(), MIN(CASE WHEN b.idMedalha IN (1, 3) THEN dtCriacao END)) AS daysSinceFirstSub
+       DATEDIFF('{date}', MIN(CASE WHEN b.idMedalha IN (1, 3) THEN dtCriacao END)) AS daysSinceFirstSub
 FROM tb_medalhas as a
 LEFT JOIN silver.gamersclub.medalhas as b
 INNER JOIN first_subscription as c
