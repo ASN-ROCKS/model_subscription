@@ -89,12 +89,3 @@ for i in tqdm(dates):
         df=df,
         mode="merge")
     print("ok")
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC
-# MAGIC SELECT count(*),
-# MAGIC        count(distinct dtRef, idJogador),
-# MAGIC        count(distinct idJogador)
-# MAGIC FROM gold.gamersclub.gameplay
