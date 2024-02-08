@@ -43,7 +43,11 @@ training_set = fe.create_training_set(
   exclude_columns=['idJogador']
 )
 
-training_df = training_set.load_df().toPandas()
+training_df = training_set.load_df()
+
+# COMMAND ----------
+
+training_df.write.mode("overwrite").format("delta").saveAsTable("gold.gamersclub.abt_subs")
 
 # COMMAND ----------
 
